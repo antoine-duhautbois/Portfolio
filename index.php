@@ -193,12 +193,12 @@
     <div class="menu">
         <ul>
             <li>
-                <a href="../Site/Index/index.php">
+                <a href="../site/Index/index.php">
                     <i class="fas fa-home"></i> Accueil
                 </a>
             </li>
             <li>
-                <a href="../Site/Pages/Compétences.php">
+                <a href="../site/Pages/Compétences.php">
                     <i class="fas fa-tools"></i> Compétences
                 </a>
             </li>
@@ -213,7 +213,7 @@
                 </a>
             </li>
             <li>
-                <a href="../Site/Pages/contact.php">
+                <a href="../site/Pages/contact.php">
                     <i class="fas fa-envelope"></i> Contact
                 </a>
             </li>
