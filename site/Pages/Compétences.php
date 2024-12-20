@@ -194,11 +194,9 @@
     <?php
     require_once("../vendor/autoload.php");
     use Symfony\Component\Yaml\Yaml;
-
-    // Chargement du fichier YAML
-    $yamlFile = 'Compétences.yaml';
+    $yamlFile = '../Portfolio/site/Pages/Compétences.yaml';
     try {
-        $data = Yaml::parseFile($yamlFile);
+    $data = Yaml::parseFile($yamlFile);
         echo "<h1>" . htmlspecialchars($data["titre"]) . "</h1>\n"; // Affichage du titre de la page avec protection contre les XSS
     
         // Parcours des domaines
