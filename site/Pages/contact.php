@@ -141,6 +141,17 @@
             }
         }
 
+        /* Style du message d'information */
+        .info-message {
+            background-color: #e0f7fa;
+            border: 1px solid #00796b;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            color: #00796b;
+            font-size: 1em;
+            text-align: center;
+        }
     </style>
 
     <!-- hCaptcha -->
@@ -160,27 +171,31 @@
         </ul>
     </div>
 
+    <!-- Message d'information sur la collecte des données -->
+    <div class="info-message">
+        <strong>Important :</strong> Nous tenons à vous informer que nous ne récoltons ni vos données personnelles, ni votre adresse. Les informations que vous saisissez sont utilisées uniquement pour répondre à vos demandes.
+    </div>
+
     <!-- Formulaire de contact -->
     <div class="contact-form">
-    <h2>Contactez-moi</h2>
-    <p style="text-align: center; color: #00796b; font-size: 18px;">Si vous avez des questions, n'hésitez pas à me les poser !</p>
-    <form action="process-form.php" method="POST">
-        <label for="name">Nom :</label>
-        <input type="text" id="name" name="name" required>
+        <h2>Contactez-moi</h2>
+        <p style="text-align: center; color: #00796b; font-size: 18px;">Si vous avez des questions, n'hésitez pas à me les poser !</p>
+        <form action="process-form.php" method="POST">
+            <label for="name">Nom :</label>
+            <input type="text" id="name" name="name" required>
 
-        <label for="email">E-mail :</label>
-        <input type="email" id="email" name="email" required>
+            <label for="email">E-mail :</label>
+            <input type="email" id="email" name="email" required>
 
-        <label for="message">Message :</label>
-        <textarea id="message" name="message" rows="4" required></textarea>
+            <label for="message">Message :</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
 
-        <!-- hCaptcha -->
-        <div class="h-captcha" data-sitekey="35aadfac-2ea6-451c-a572-729496a628a8"></div>
+            <!-- hCaptcha -->
+            <div class="h-captcha" data-sitekey="35aadfac-2ea6-451c-a572-729496a628a8"></div>
 
-        <button type="submit">Envoyer</button>
-    </form>
-</div>
-
+            <button type="submit">Envoyer</button>
+        </form>
+    </div>
 
 </body>
 </html>
