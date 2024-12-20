@@ -192,7 +192,7 @@
     <!-- Contenu dynamique généré par PHP -->
 <div class="content">
     <?php
-    require_once("../vendor/autoload.php");
+    require_once("../../vendor/autoload.php");
     use Symfony\Component\Yaml\Yaml;
 
     // Chargement du fichier YAML
