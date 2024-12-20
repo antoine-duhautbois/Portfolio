@@ -194,7 +194,7 @@
     <?php
     require_once(__DIR__ . '/../../../vendor/autoload.php');
     use Symfony\Component\Yaml\Yaml;
-    $yamlFile = '../Portfolio/site/Pages/Compétences.yaml';
+    $yamlFile = 'Compétences.yaml';
     try {
     $data = Yaml::parseFile($yamlFile);
         echo "<h1>" . htmlspecialchars($data["titre"]) . "</h1>\n"; // Affichage du titre de la page avec protection contre les XSS
