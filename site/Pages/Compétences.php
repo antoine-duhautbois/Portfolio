@@ -192,8 +192,11 @@
     <!-- Contenu dynamique généré par PHP -->
 <div class="content">
     <?php
-    require_once("yaml/yaml.php");
-    $data = yaml_parse_file('Compétences.yaml');
+    require_once("../vendor/autoload.php");
+    use Symfony\Component\Yaml\Yaml;
+    $yamlFile = '../Portfolio/site/Pages/Compétences.yaml';
+    try {
+        $data = Yaml::parseFile($yamlFile);
     echo "<h1>".$data["titre"]."</h1>\n";
     
     foreach($data["domaines"] AS $domaine){
