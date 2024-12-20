@@ -192,31 +192,14 @@
     <!-- Contenu dynamique généré par PHP -->
 <div class="content">
     <?php
-    require_once("site/vendor/autoload.php");
+    require_once("../vendor/autoload.php");
     use Symfony\Component\Yaml\Yaml;
 
     // Chargement du fichier YAML
-<?php
-require_once("../vendor/autoload.php");
-use Symfony\Component\Yaml\Yaml;
-
-$yamlFile = '../Portfolio/site/Pages/Compétences.yaml';
-try {
-    $data = Yaml::parseFile($yamlFile);
-
-    // Vérifie si les données sont bien chargées
-    if ($data) {
-        echo "<pre>";
-        print_r($data);  // Affiche le contenu du YAML pour déboguer
-        echo "</pre>";
-    } else {
-        echo "Le fichier YAML est vide ou ne peut pas être parsé.";
-    }
-} catch (Exception $e) {
-    echo "<p>Erreur lors du chargement du fichier YAML: " . $e->getMessage() . "</p>";
-}
-
-
+    $yamlFile = 'Compétences.yaml';
+    try {
+        $data = Yaml::parseFile($yamlFile);
+        echo "<h1>" . htmlspecialchars($data["titre"]) . "</h1>\n"; // Affichage du titre de la page avec protection contre les XSS
     
         // Parcours des domaines
         foreach ($data["domaines"] as $domaine) {
