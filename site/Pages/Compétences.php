@@ -197,31 +197,25 @@
     $yamlFile = 'Compétences.yaml';
     try {
     $data = Yaml::parseFile($yamlFile);
-        echo "<h1>" . htmlspecialchars($data["titre"]) . "</h1>\n"; // Affichage du titre de la page avec protection contre les XSS
+        echo "<h1>".$data["titre"]."</h1>\n";
     
-        // Parcours des domaines
-        foreach ($data["domaines"] as $domaine) {
-            echo "<section class='domaine'><h2><strong>" . ucfirst(htmlspecialchars($domaine["nom"])) . "</strong></h2>\n"; // Affichage du nom du domaine
+    foreach($data["domaines"] AS $domaine){
+        echo "<section><p><strong>".ucfirst($domaine["nom"])."</strong> :</p>\n";
+        
+        // On parcourt les catégories de chaque domaine
+        foreach($domaine["categories"] as $categorie){
+            echo "<h2>".$categorie["nom"]."</h2>\n";  // Affichage du nom de la catégorie
             
-            // Parcours des catégories dans chaque domaine
-            foreach ($domaine["categories"] as $categorie) {
-                echo "<div class='categorie'><h3>" . htmlspecialchars($categorie["nom"]) . "</h3>\n"; // Affichage du nom de la catégorie
-
-                // Vérification et parcours des compétences dans chaque catégorie
-                if (is_array($categorie["competences"])) {
-                    echo "<ul class='competences'>\n";
-                    foreach ($categorie["competences"] as $competence) {
-                        // Affichage de la compétence avec son niveau
-                        echo "<li><strong>" . htmlspecialchars($competence["nom"]) . "</strong> : " . htmlspecialchars($competence["niveau"]) . " %</li>\n";
-                    }
-                    echo "</ul>\n";
+            // Vérification et parcours des compétences de chaque catégorie
+            if (is_array($categorie["competences"])) {
+                foreach($categorie["competences"] as $competence){
+                    // On affiche le nom de la compétence et son niveau
+                    echo "<p>".$competence["nom"]." : ".$competence["niveau"]." %</p>";
                 }
-                echo "</div>\n"; // Fin de la catégorie
             }
-            echo "</section>\n"; // Fin du domaine
         }
-    } catch (Exception $e) {
-        echo "<p>Erreur lors du chargement du fichier YAML: " . $e->getMessage() . "</p>";
+        
+        echo "</section>\n";
     }
     ?>
 </div>
