@@ -62,27 +62,6 @@
             animation: bounce 1s forwards;
         }
 
-        .menu ul li a:hover:before {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background-color: #ff5722;
-            transform: scaleX(1);
-            animation: underline 0.1s forwards;
-        }
-
-        .menu ul li a i {
-            margin-right: 8px;
-            transition: transform 0.2s;
-        }
-
-        .menu ul li a:hover i {
-            transform: scale(1.2);
-        }
-
         /* Style pour le formulaire */
         .contact-form {
             background-color: rgba(255, 255, 255, 0.9);
@@ -131,26 +110,17 @@
             background-color: #004d40;
         }
 
-        /* Animation pour les éléments */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        /* Style du message d'information */
-        .info-message {
-            background-color: #e0f7fa;
-            border: 1px solid #00796b;
-            padding: 10px;
+        /* Style du message RGPD */
+        .rgpd-message {
+            background-color: #fff8e1;
+            border: 1px solid #ffb74d;
+            padding: 15px;
             margin-bottom: 20px;
             border-radius: 5px;
-            color: #00796b;
-            font-size: 1em;
+            color: #f57c00;
+            font-size: 0.9em;
             text-align: center;
+            font-style: italic;
         }
     </style>
 
@@ -171,9 +141,9 @@
         </ul>
     </div>
 
-    <!-- Message d'information sur la collecte des données -->
-    <div class="info-message">
-        <strong>Important :</strong> Nous tenons à vous informer que nous ne récoltons ni vos données personnelles, ni votre adresse. Les informations que vous saisissez sont utilisées uniquement pour répondre à vos demandes.
+    <!-- Message RGPD -->
+    <div class="rgpd-message">
+        <strong>Conformément au RGPD :</strong> Les informations saisies dans ce formulaire ne seront utilisées que pour répondre à votre demande. Aucune donnée personnelle ne sera conservée ou transmise à des tiers.
     </div>
 
     <!-- Formulaire de contact -->
