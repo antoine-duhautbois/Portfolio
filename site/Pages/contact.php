@@ -62,100 +62,66 @@
             animation: bounce 1s forwards;
         }
 
-        .menu ul li a:hover:before {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background-color: #ff5722;
-            transform: scaleX(1);
-            animation: underline 0.3s forwards;
+        /* Style pour le formulaire */
+        .contact-form {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 20px auto;
+            animation: fadeIn 1s;
         }
 
-        .menu ul li a i {
-            margin-right: 8px;
-            transition: transform 0.2s;
-        }
-
-        .menu ul li a:hover i {
-            transform: scale(1.2);
-        }
-
-        /* Style pour principal */
-        .content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
+        .contact-form h2 {
             text-align: center;
+            color: #00796b;
         }
 
-        h1 {
-            color: #333;
-            font-size: 2.5em;
-            margin-top: 0;
-            animation: fadeIn 0.5s;
-        }
-
-        h2 {
-            color: #333;
-            text-align: center;
-        }
-
-        section {
-            padding: 10px;
+        .contact-form label {
+            font-weight: bold;
             margin-bottom: 5px;
-            animation: slideIn 0.5s forwards;
-            animation-delay: 0.5s;
-            background-color: transparent;
+            display: block;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .contact-form button {
+            width: 100%;
+            padding: 12px;
+            background-color: #00796b;
+            color: #fff;
             border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
         }
 
-        p {
-            margin: 0 0 1px 0;
-            padding: 0;
+        .contact-form button:hover {
+            background-color: #004d40;
         }
 
-        /* Animations */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+        /* Style du message RGPD */
+        .rgpd-message {
+            background-color: #fff8e1;
+            border: 1px solid #ffb74d;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            color: #f57c00;
+            font-size: 0.9em;
+            text-align: center;
+            font-style: italic;
         }
-
-        @keyframes slideIn {
-            from {
-                transform: translateY(20px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        @keyframes underline {
-            0% {
-                transform: scaleX(0);
-            }
-            100% {
-                transform: scaleX(1);
-            }
-        }
-
     </style>
 
     <!-- hCaptcha -->
