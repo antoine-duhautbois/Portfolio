@@ -1,0 +1,44 @@
+titre: "Mes compétences"
+domaines:
+    - nom: bureautique
+      categories:
+        - nom: logiciels
+          competences:
+            - nom: word
+              niveau: 60
+            - nom: excel
+              niveau: 30
+            - nom: powerpoint
+              niveau: 70
+        - nom: outils
+          competences:
+            - nom: outlook
+              niveau: 50
+            - nom: teams
+              niveau: 80
+    - nom: réseau
+      categories:
+        - nom: matériel
+          competences:
+            - nom: switch
+              niveau: 75
+            - nom: routeur
+              niveau: 70
+            - nom: fibre optique
+              niveau: 80
+        - nom: protocoles
+          competences:
+            - nom: tcp/ip
+              niveau: 60
+            - nom: dns
+              niveau: 65
+    - nom: développement
+      categories:
+        - nom: langages
+          competences:
+            - nom: html
+              niveau: 60
+            - nom: css
+              niveau: 60
+            - nom: php
+              niveau: 10
