@@ -191,33 +191,44 @@
 
     <!-- Contenu dynamique généré par PHP -->
 <div class="content">
-    <?php
-    require_once(__DIR__ . '/../../../vendor/autoload.php');
-    use Symfony\Component\Yaml\Yaml;
-    $yamlFile = 'Compétences.yaml';
-    try {
+<?php
+require_once(__DIR__ . '/../../../vendor/autoload.php');
+use Symfony\Component\Yaml\Yaml;
+
+$yamlFile = __DIR__ . '/Compétences.yaml';
+
+try {
+    // Charger et parser le fichier YAML
     $data = Yaml::parseFile($yamlFile);
-        echo "<h1>".$data["titre"]."</h1>\n";
-    
-    foreach($data["domaines"] AS $domaine){
-        echo "<section><p><strong>".ucfirst($domaine["nom"])."</strong> :</p>\n";
+
+    // Affichage du titre
+    echo "<h1>" . htmlspecialchars($data["titre"]) . "</h1>\n";
+
+    // Boucle sur les domaines
+    foreach ($data["domaines"] as $domaine) {
+        echo "<section class='domaine'><h2><strong>" . ucfirst(htmlspecialchars($domaine["nom"])) . "</strong></h2>\n";
         
-        // On parcourt les catégories de chaque domaine
-        foreach($domaine["categories"] as $categorie){
-            echo "<h2>".$categorie["nom"]."</h2>\n";  // Affichage du nom de la catégorie
-            
-            // Vérification et parcours des compétences de chaque catégorie
+        // Boucle sur les catégories du domaine
+        foreach ($domaine["categories"] as $categorie) {
+            echo "<div class='categorie'><h3>" . htmlspecialchars($categorie["nom"]) . "</h3>\n";
+
+            // Boucle sur les compétences de la catégorie
             if (is_array($categorie["competences"])) {
-                foreach($categorie["competences"] as $competence){
-                    // On affiche le nom de la compétence et son niveau
-                    echo "<p>".$competence["nom"]." : ".$competence["niveau"]." %</p>";
+                foreach ($categorie["competences"] as $competence) {
+                    // Affichage sans balises de liste ou paragraphes
+                    echo "<strong>" . htmlspecialchars($competence["nom"]) . "</strong> : " . htmlspecialchars($competence["niveau"]) . " %<br>\n";
                 }
             }
+            echo "</div>\n"; // Fin de la catégorie
         }
-        
-        echo "</section>\n";
+        echo "</section>\n"; // Fin du domaine
     }
-    ?>
+} catch (Exception $e) {
+    // Affiche l'erreur si le fichier YAML ne peut pas être chargé
+    echo "<p>Erreur lors du chargement du fichier YAML: " . $e->getMessage() . "</p>";
+}
+?>
+
 </div>
 </body>
 </html>
