@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mon Portfolio</title>
+    
+    <!-- Lien vers Google Fonts pour la police Poppins -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Lien vers FontAwesome pour les icônes -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
-        /* Style général */
+        /* Style général du corps de la page */
         body {
             font-family: 'Poppins', sans-serif;
             font-size: 16px;
@@ -18,7 +21,7 @@
             color: #333;
         }
 
-        /* Style menu */
+        /* Style du menu */
         .menu {
             background-color: rgba(255, 255, 255, 0.9);
             padding: 15px;
@@ -80,7 +83,7 @@
             transform: scale(1.2);
         }
 
-        
+        /* Style pour le titre principal */
         h1 {
             color: #333;
             text-align: center;
@@ -89,28 +92,39 @@
             animation: fadeIn 0.5s;
         }
 
-        
+        /* Style pour les sous-titres */
         h2 {
             color: #333;
             text-align: center;
         }
 
-       
+        /* Style pour chaque section (sans fond, sans bordure) */
         section {
-            padding: 10px;        
-            margin-bottom: 5px;    
+            padding: 10px;        /* Ajoute un peu de padding autour du texte */
+            margin-bottom: 5px;    /* Petit espace entre les sections */
             animation: slideIn 0.5s forwards;
             animation-delay: 0.5s;
-            background-color: transparent; 
-            border: none; 
+            background-color: transparent; /* Pas de fond */
+            border: none; /* Pas de bordure */
         }
 
-        
+        /* Style pour les paragraphes (petit espace entre les paragraphes) */
         p {
-            margin: 0 0 1px 0;      
-            padding: 0;             
+            margin: 0 0 1px 0;      /* Petite marge en bas de chaque paragraphe */
+            padding: 0;             /* Pas de padding */
         }
-        /* Style téléchargement */
+
+        /* Style pour l'image ronde */
+        .photo {
+            display: block;
+            margin: 20px auto;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* Style pour le bouton de téléchargement */
         .download-btn {
             display: inline-block;
             background-color: #00796b;
@@ -126,10 +140,11 @@
             text-decoration: none;
         }
 
-        /* Style survol telechargement */
+        /* Style au survol */
         .download-btn:hover {
             background-color: #004d40;
             transform: scale(1.05);
+        }
 
         /* Animations */
         @keyframes fadeIn {
