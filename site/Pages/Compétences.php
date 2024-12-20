@@ -80,7 +80,7 @@
             transform: scale(1.2);
         }
 
-        /* Style pour le contenu principal */
+        /* Style pour principal */
         .content {
             max-width: 800px;
             margin: 0 auto;
@@ -189,7 +189,7 @@
         </ul>
     </div>
 
-    <!-- Contenu dynamique généré par PHP -->
+    <!-- PHP -->
 <div class="content">
 <?php
 require_once(__DIR__ . '/../../../vendor/autoload.php');
@@ -198,33 +198,32 @@ use Symfony\Component\Yaml\Yaml;
 $yamlFile = __DIR__ . '/Compétences.yaml';
 
 try {
-    // Charger et parser le fichier YAML
+    
     $data = Yaml::parseFile($yamlFile);
 
-    // Affichage du titre
+    
     echo "<h1>" . htmlspecialchars($data["titre"]) . "</h1>\n";
 
-    // Boucle sur les domaines
+    
     foreach ($data["domaines"] as $domaine) {
         echo "<section class='domaine'><h2><strong>" . ucfirst(htmlspecialchars($domaine["nom"])) . "</strong></h2>\n";
         
-        // Boucle sur les catégories du domaine
+        
         foreach ($domaine["categories"] as $categorie) {
             echo "<div class='categorie'><h3>" . htmlspecialchars($categorie["nom"]) . "</h3>\n";
 
-            // Boucle sur les compétences de la catégorie
+            
             if (is_array($categorie["competences"])) {
                 foreach ($categorie["competences"] as $competence) {
-                    // Affichage sans balises de liste ou paragraphes
                     echo "<strong>" . htmlspecialchars($competence["nom"]) . "</strong> : " . htmlspecialchars($competence["niveau"]) . " %<br>\n";
                 }
             }
-            echo "</div>\n"; // Fin de la catégorie
+            echo "</div>\n";
         }
-        echo "</section>\n"; // Fin du domaine
+        echo "</section>\n";
     }
 } catch (Exception $e) {
-    // Affiche l'erreur si le fichier YAML ne peut pas être chargé
+    // Si erreur
     echo "<p>Erreur lors du chargement du fichier YAML: " . $e->getMessage() . "</p>";
 }
 ?>
