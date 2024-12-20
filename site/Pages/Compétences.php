@@ -192,7 +192,7 @@
     <!-- Contenu dynamique généré par PHP -->
 <div class="content">
     <?php
-    require_once("../vendor/autoload.php");
+    require_once(__DIR__ . '/../../../vendor/autoload.php');
     use Symfony\Component\Yaml\Yaml;
     $yamlFile = '../Portfolio/site/Pages/Compétences.yaml';
     try {
