@@ -193,7 +193,7 @@
     <div class="menu">
         <ul>
             <li>
-                <a href="../site/Index/index.php">
+                <a href="../index.php">
                     <i class="fas fa-home"></i> Accueil
                 </a>
             </li>
