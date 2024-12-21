@@ -150,7 +150,7 @@
         require_once(__DIR__ . '/../../../vendor/autoload.php');
         use Symfony\Component\Yaml\Yaml;
 
-        $yamlFile = __DIR__ . '/../yaml/realisations.yaml';
+        $yamlFile = __DIR__ . 'Réalisations.yaml';
 
         try {
             $data = Yaml::parseFile($yamlFile);
