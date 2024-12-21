@@ -17,40 +17,69 @@
             color: #333;
         }
 
+        /* Menu de navigation */
         .menu {
             background-color: rgba(255, 255, 255, 0.9);
             padding: 15px;
             border-radius: 10px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
-            text-align: center;
+            animation: fadeIn 0.5s;
         }
 
         .menu ul {
             list-style-type: none;
             margin: 0;
             padding: 0;
+            text-align: center;
         }
 
         .menu ul li {
             display: inline;
             margin: 0 20px;
+            position: relative;
         }
 
         .menu ul li a {
             text-decoration: none;
             color: #00796b;
             font-weight: bold;
-            padding: 10px 15px;
+            padding: 12px 20px;
             border-radius: 5px;
             transition: background-color 0.3s, color 0.3s;
+            display: inline-flex;
+            align-items: center;
+            position: relative;
         }
 
         .menu ul li a:hover {
             background-color: #00796b;
             color: #fff;
+            animation: bounce 1s forwards;
         }
 
+        .menu ul li a:hover:before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: #ff5722;
+            transform: scaleX(1);
+            animation: underline 0.3s forwards;
+        }
+
+        .menu ul li a i {
+            margin-right: 8px;
+            transition: transform 0.2s;
+        }
+
+        .menu ul li a:hover i {
+            transform: scale(1.2);
+        }
+
+        /* Section principale */
         .content {
             max-width: 800px;
             margin: 40px auto;
@@ -79,7 +108,6 @@
             border-radius: 50px;
             background: linear-gradient(90deg, #00796b, #4caf50);
             width: var(--width);
-            transition: width 1s ease-in-out;
         }
 
         .pourcentage {
@@ -89,6 +117,7 @@
             font-weight: 600;
         }
 
+        /* Footer avec logo GitHub */
         .footer {
             text-align: center;
             margin: 40px 0;
@@ -104,6 +133,35 @@
         .github-logo:hover {
             opacity: 1;
         }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes underline {
+            0% {
+                transform: scaleX(0);
+            }
+            100% {
+                transform: scaleX(1);
+            }
+        }
+
     </style>
 </head>
 
@@ -112,11 +170,31 @@
     <!-- Menu de navigation -->
     <div class="menu">
         <ul>
-            <li><a href="../../index.php"><i class="fas fa-home"></i> Accueil</a></li>
-            <li><a href="Compétences.php"><i class="fas fa-tools"></i> Compétences</a></li>
-            <li><a href="Réalisations.php"><i class="fas fa-trophy"></i> Réalisations</a></li>
-            <li><a href="Formations.php"><i class="fas fa-graduation-cap"></i> Formations</a></li>
-            <li><a href="contact.php"><i class="fas fa-envelope"></i> Contact</a></li>
+            <li>
+                <a href="../../index.php">
+                    <i class="fas fa-home"></i> Accueil
+                </a>
+            </li>
+            <li>
+                <a href="Compétences.php">
+                    <i class="fas fa-tools"></i> Compétences
+                </a>
+            </li>
+            <li>
+                <a href="Réalisations.php">
+                    <i class="fas fa-trophy"></i> Réalisations
+                </a>
+            </li>
+            <li>
+                <a href="Formations.php">
+                    <i class="fas fa-graduation-cap"></i> Formations
+                </a>
+            </li>
+            <li>
+                <a href="contact.php">
+                    <i class="fas fa-envelope"></i> Contact
+                </a>
+            </li>
         </ul>
     </div>
 
