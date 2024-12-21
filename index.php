@@ -57,6 +57,28 @@
         .menu ul li a:hover {
             background-color: #00796b;
             color: #fff;
+            animation: bounce 1s forwards;
+        }
+
+        .menu ul li a:hover:before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: #ff5722;
+            transform: scaleX(1);
+            animation: underline 0.1s forwards;
+        }
+
+        .menu ul li a i {
+            margin-right: 8px;
+            transition: transform 0.2s;
+        }
+
+        .menu ul li a:hover i {
+            transform: scale(1.2);
         }
 
         h1 {
@@ -79,7 +101,6 @@
             margin-bottom: 15px;
         }
 
-        /* Style pour la photo de profil */
         .photo {
             display: block;
             margin: 20px auto;
@@ -90,7 +111,6 @@
             border: 3px solid #00796b;
         }
 
-        /* GitHub Logo */
         .github-logo {
             display: block;
             margin: 40px auto;
@@ -106,13 +126,30 @@
             transform: scale(1.1);
         }
 
-        /* Animations */
         @keyframes fadeIn {
             from {
                 opacity: 0;
             }
             to {
                 opacity: 1;
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes underline {
+            0% {
+                transform: scaleX(0);
+            }
+            100% {
+                transform: scaleX(1);
             }
         }
     </style>
@@ -123,22 +160,41 @@
    <!-- Menu navigation -->
     <div class="menu">
         <ul>
-            <li><a href="../index.php"><i class="fas fa-home"></i> Accueil</a></li>
-            <li><a href="../site/Pages/Compétences.php"><i class="fas fa-tools"></i> Compétences</a></li>
-            <li><a href="../site/Pages/Réalisations.php"><i class="fas fa-trophy"></i> Réalisations</a></li>
-            <li><a href="#Formations"><i class="fas fa-graduation-cap"></i> Formations</a></li>
-            <li><a href="../site/Pages/contact.php"><i class="fas fa-envelope"></i> Contact</a></li>
+            <li>
+                <a href="../index.php">
+                    <i class="fas fa-home"></i> Accueil
+                </a>
+            </li>
+            <li>
+                <a href="../site/Pages/Compétences.php">
+                    <i class="fas fa-tools"></i> Compétences
+                </a>
+            </li>
+            <li>
+                <a href="../site/Pages/Réalisations.php">
+                    <i class="fas fa-trophy"></i> Réalisations
+                </a>
+            </li>
+            <li>
+                <a href="#Formations">
+                    <i class="fas fa-graduation-cap"></i> Formations
+                </a>
+            </li>
+            <li>
+                <a href="../site/Pages/contact.php">
+                    <i class="fas fa-envelope"></i> Contact
+                </a>
+            </li>
         </ul>
     </div>
 
-    <!-- Présentation -->
     <h1>Présentation</h1>
-    <center><h3>Bienvenue sur ma page de Portfolio. Vous êtes actuellement sur la page de présentation (Accueil)</h3></center>
+    <center>
+        <h3>Bienvenue sur ma page de Portfolio. Vous êtes actuellement sur la page de présentation (Accueil)</h3>
+    </center>
 
-    <!-- Photo de profil -->
     <img src="/site/Extras/photo-profil.jpg" alt="Ma photo" class="photo">
 
-    <!-- PHP : Affichage du contenu YAML -->
     <section>
     <?php
     require_once("../vendor/autoload.php");
@@ -148,7 +204,6 @@
     try {
         $data = Yaml::parseFile($yamlFile);
         
-        // Affiche le contenu YAML
         foreach ($data["prenom"] as $prenom) {
             echo "<p><strong>" . ucfirst(htmlspecialchars($prenom["nom"])) . "</strong> : " . htmlspecialchars($prenom["pseudo"]) . "</p>\n";
         }
@@ -161,7 +216,6 @@
             echo "<p>" . nl2br(htmlspecialchars($descriptif["descriptif"])) . "</p>\n";
         }
 
-        // Section présentation correctement ajoutée
         foreach ($data["presentation"] as $descriptif) {
             echo "<p>" . nl2br(htmlspecialchars($descriptif["descriptif"])) . "</p>\n";
         }
@@ -172,7 +226,6 @@
     ?>
     </section>
 
-    <!-- Logo GitHub -->
     <div class="github-logo">
         <a href="https://github.com/antoine-duhautbois" target="_blank">
             <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub Logo">
