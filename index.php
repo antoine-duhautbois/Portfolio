@@ -51,11 +51,24 @@
             padding: 12px 20px;
             border-radius: 5px;
             transition: background-color 0.3s, color 0.3s;
+            display: inline-flex;
+            align-items: center;
         }
 
         .menu ul li a:hover {
             background-color: #00796b;
             color: #fff;
+        }
+
+        .menu ul li a:hover:before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: #ff5722;
+            transform: scaleX(1);
         }
 
         /* Style pour le titre principal */
@@ -64,10 +77,10 @@
             text-align: center;
             font-size: 2.5em;
             margin-top: 10px;
-            margin-bottom: 10px;
             animation: fadeIn 0.5s;
         }
 
+        /* Style pour chaque section */
         section {
             padding: 20px;
             margin: 20px auto;
@@ -78,18 +91,21 @@
             animation: slideIn 0.5s forwards;
         }
 
-        /* Style pour le texte généré */
-        .yaml-text {
-            font-size: 1.1em;
-            text-align: center;
-            margin-bottom: 30px;
+        /* Style pour la photo */
+        .photo {
+            display: block;
+            margin: 20px auto;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
         }
 
-        /* Style pour l'icône GitHub */
+        /* Style pour le logo GitHub */
         .github-logo {
             display: block;
-            margin: 40px auto;
             text-align: center;
+            margin: 50px auto;
         }
 
         .github-logo a {
@@ -118,7 +134,7 @@
 
 <body>
 
-    <!-- Menu navigation -->
+   <!-- Menu navigation -->
     <div class="menu">
         <ul>
             <li>
@@ -149,35 +165,37 @@
         </ul>
     </div>
 
-    <!-- Titre principal -->
+    <!-- Présentation -->
     <h1>Présentation</h1>
     <center>
         <h3>Bienvenue sur ma page de Portfolio. Vous êtes actuellement sur la page de présentation (Accueil)</h3>
     </center>
-    <br>
 
     <!-- Photo de profil -->
     <img src="/site/Extras/photo-profil.jpg" alt="Ma photo" class="photo">
 
-    <!-- PHP - Contenu YAML -->
+    <!-- Contenu PHP généré par YAML -->
     <div class="yaml-text">
         <?php
         require_once("../vendor/autoload.php");
         use Symfony\Component\Yaml\Yaml;
+
         $yamlFile = '../Portfolio/site/Pages/Acceuil.yaml';
+        
         try {
             $data = Yaml::parseFile($yamlFile);
+            
             echo "<h1>" . htmlspecialchars($data["titre"]) . "</h1>\n";
-            foreach($data["prenom"] as $prenom) {
+            
+            foreach ($data["prenom"] as $prenom) {
                 echo "<section><p>" . ucfirst(htmlspecialchars($prenom["nom"])) . " : " . htmlspecialchars($prenom["pseudo"]) . "</p></section>\n";
             }
-            foreach($data["famille"] as $nom) {
+            
+            foreach ($data["famille"] as $nom) {
                 echo "<section><p>" . ucfirst(htmlspecialchars($nom["nom"])) . " : " . htmlspecialchars($nom["famille"]) . "</p></section>\n";
             }
-            foreach($data["accroche"] as $descriptif) {
-                echo "<section><p>" . ucfirst(htmlspecialchars($descriptif["descriptif"])) . "</p></section>\n";
-            }
-            foreach($data["presentation"] as $descriptif) {
+            
+            foreach ($data["accroche"] as $descriptif) {
                 echo "<section><p>" . ucfirst(htmlspecialchars($descriptif["descriptif"])) . "</p></section>\n";
             }
         } catch (Exception $e) {
@@ -186,7 +204,7 @@
         ?>
     </div>
 
-    <!-- Logo GitHub (placé en bas de page) -->
+    <!-- Logo GitHub (en bas de page) -->
     <div class="github-logo">
         <a href="https://github.com/antoine-duhautbois" target="_blank">
             <i class="fab fa-github"></i>
