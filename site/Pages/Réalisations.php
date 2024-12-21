@@ -35,6 +35,7 @@
             border-radius: 10px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
+            animation: fadeIn 0.5s;
         }
         .menu ul {
             list-style-type: none;
@@ -105,6 +106,21 @@
             background-color: #004d40;
             transform: scale(1.05);
         }
+
+        /* Footer avec logo GitHub */
+        .footer {
+            text-align: center;
+            margin: 40px 0;
+        }
+        .github-logo {
+            font-size: 40px;  /* Taille du logo */
+            color: #333;
+            transition: color 0.3s, transform 0.2s;
+        }
+        .github-logo:hover {
+            color: #00796b; /* Couleur au survol */
+            transform: scale(1.1);
+        }
     </style>
 </head>
 <body>
@@ -171,6 +187,13 @@
             echo "<p>Erreur lors du chargement du fichier YAML: " . $e->getMessage() . "</p>";
         }
         ?>
+    </div>
+
+    <!-- Footer avec le logo GitHub -->
+    <div class="footer">
+        <a href="https://github.com/antoine-duhautbois" target="_blank">
+            <i class="fab fa-github github-logo"></i>
+        </a>
     </div>
 
 </body>
