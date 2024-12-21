@@ -17,7 +17,7 @@
             font-size: 16px;
             margin: 0;
             padding: 0;
-            background: linear-gradient(80deg, #e0f7fa, #80deea); /* Dégradé clair */
+            background: linear-gradient(80deg, #e0f7fa, #80deea); 
             color: #333;
         }
 
@@ -51,36 +51,11 @@
             padding: 12px 20px;
             border-radius: 5px;
             transition: background-color 0.3s, color 0.3s;
-            display: inline-flex;
-            align-items: center;
-            position: relative;
         }
 
         .menu ul li a:hover {
             background-color: #00796b;
             color: #fff;
-            animation: bounce 1s forwards;
-        }
-
-        .menu ul li a:hover:before {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background-color: #ff5722;
-            transform: scaleX(1);
-            animation: underline 0.1s forwards;
-        }
-
-        .menu ul li a i {
-            margin-right: 8px;
-            transition: transform 0.2s;
-        }
-
-        .menu ul li a:hover i {
-            transform: scale(1.2);
         }
 
         /* Style pour le titre principal */
@@ -88,42 +63,39 @@
             color: #333;
             text-align: center;
             font-size: 2.5em;
-            margin-top: 0;
+            margin-top: 10px;
+            margin-bottom: 10px;
             animation: fadeIn 0.5s;
         }
 
-        /* Style pour les sections */
         section {
-            padding: 10px;
-            margin-bottom: 5px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 800px;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             animation: slideIn 0.5s forwards;
-            animation-delay: 0.5s;
-            background-color: transparent;
-            border: none;
         }
 
-        /* Style pour l'image ronde */
-        .photo {
-            display: block;
-            margin: 20px auto;
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
+        /* Style pour le texte généré */
+        .yaml-text {
+            font-size: 1.1em;
+            text-align: center;
+            margin-bottom: 30px;
         }
 
         /* Style pour l'icône GitHub */
         .github-logo {
             display: block;
-            margin: 30px auto;
+            margin: 40px auto;
             text-align: center;
         }
 
         .github-logo a {
-            display: inline-block;
-            font-size: 40px;
+            font-size: 50px;
             color: #333;
-            transition: color 0.3s ease, transform 0.3s;
+            transition: color 0.3s, transform 0.3s;
         }
 
         .github-logo a:hover {
@@ -133,48 +105,20 @@
 
         /* Animations */
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         @keyframes slideIn {
-            from {
-                transform: translateY(20px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        @keyframes underline {
-            0% {
-                transform: scaleX(0);
-            }
-            100% {
-                transform: scaleX(1);
-            }
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
     </style>
 </head>
 
 <body>
 
-   <!-- Menu navigation -->
+    <!-- Menu navigation -->
     <div class="menu">
         <ul>
             <li>
@@ -205,7 +149,7 @@
         </ul>
     </div>
 
-    <!-- Titre "Présentation" -->
+    <!-- Titre principal -->
     <h1>Présentation</h1>
     <center>
         <h3>Bienvenue sur ma page de Portfolio. Vous êtes actuellement sur la page de présentation (Accueil)</h3>
@@ -215,21 +159,23 @@
     <!-- Photo de profil -->
     <img src="/site/Extras/photo-profil.jpg" alt="Ma photo" class="photo">
 
-    <!-- PHP -->
-    <?php
-    require_once("../vendor/autoload.php");
-    use Symfony\Component\Yaml\Yaml;
-    $yamlFile = '../Portfolio/site/Pages/Acceuil.yaml';
-    try {
-        $data = Yaml::parseFile($yamlFile);
-        echo "<h1>".$data["titre"]."</h1>\n";
-        foreach($data["prenom"] AS $prenom){
-            echo "<section><p>".ucfirst($prenom["nom"])." : ".$prenom["pseudo"]."</p></section>\n";
+    <!-- PHP - Contenu YAML -->
+    <div class="yaml-text">
+        <?php
+        require_once("../vendor/autoload.php");
+        use Symfony\Component\Yaml\Yaml;
+        $yamlFile = '../Portfolio/site/Pages/Acceuil.yaml';
+        try {
+            $data = Yaml::parseFile($yamlFile);
+            echo "<h1>" . htmlspecialchars($data["titre"]) . "</h1>\n";
+            foreach($data["prenom"] as $prenom) {
+                echo "<section><p>" . ucfirst(htmlspecialchars($prenom["nom"])) . " : " . htmlspecialchars($prenom["pseudo"]) . "</p></section>\n";
+            }
+        } catch (Exception $e) {
+            echo 'Erreur lors du chargement du fichier YAML : ' . $e->getMessage();
         }
-    } catch (Exception $e) {
-        echo 'Erreur lors du chargement du fichier YAML : ' . $e->getMessage();
-    }
-    ?>
+        ?>
+    </div>
 
     <!-- Logo GitHub -->
     <div class="github-logo">
