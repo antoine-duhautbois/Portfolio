@@ -150,7 +150,7 @@
         require_once(__DIR__ . '/../../../vendor/autoload.php');
         use Symfony\Component\Yaml\Yaml;
 
-        $yamlFile = __DIR__ . '/Réalisations.yaml';
+        $yamlFile = __DIR__ . '/../yaml/realisations.yaml';
 
         try {
             $data = Yaml::parseFile($yamlFile);
@@ -160,7 +160,7 @@
                 echo '<h2>' . htmlspecialchars($realisation['titre']) . '</h2>';
                 echo '<p>' . htmlspecialchars($realisation['description']) . '</p>';
                 
-                // Ajouter un bouton uniquement pour le Projet 2
+                // Bouton uniquement pour le projet 2
                 if (!empty($realisation['lien']) && $realisation['titre'] === "Projet 2 : Site Web Mention Légales") {
                     echo '<a href="' . htmlspecialchars($realisation['lien']) . '" class="btn">Voir le projet</a>';
                 }
