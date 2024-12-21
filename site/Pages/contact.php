@@ -135,7 +135,7 @@
         <ul>
             <li><a href="../../index.php"><i class="fas fa-home"></i> Accueil</a></li>
             <li><a href="Compétences.php"><i class="fas fa-tools"></i> Compétences</a></li>
-            <li><a href="#Réalisations"><i class="fas fa-trophy"></i> Réalisations</a></li>
+            <li><a href="Réalisations.php"><i class="fas fa-trophy"></i> Réalisations</a></li>
             <li><a href="#Formations"><i class="fas fa-graduation-cap"></i> Formations</a></li>
             <li><a href="contact.php"><i class="fas fa-envelope"></i> Contact</a></li>
         </ul>
