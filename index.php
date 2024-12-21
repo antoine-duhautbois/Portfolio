@@ -118,7 +118,7 @@
         }
 
         .github-logo img {
-            width: 80px;
+            width: 60px; /* Taille réduite à 60px */
             transition: transform 0.3s;
         }
 
