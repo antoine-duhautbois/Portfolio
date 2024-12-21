@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon Portfolio</title>
-
+    <title>Mes Réalisations</title>
+    
+    <!-- Lien vers Google Fonts pour la police Poppins -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Lien vers FontAwesome pour les icônes -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
@@ -18,7 +20,6 @@
             color: #333;
         }
 
-        /* Menu de navigation */
         .menu {
             background-color: rgba(255, 255, 255, 0.9);
             padding: 15px;
@@ -56,65 +57,42 @@
         .menu ul li a:hover {
             background-color: #00796b;
             color: #fff;
-            animation: bounce 1s forwards;
-        }
-
-        .menu ul li a:hover:before {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background-color: #ff5722;
-            transform: scaleX(1);
-            animation: underline 0.3s forwards;
-        }
-
-        .menu ul li a i {
-            margin-right: 8px;
-            transition: transform 0.2s;
-        }
-
-        .menu ul li a:hover i {
-            transform: scale(1.2);
-        }
-
-        /* Style pour principal */
-        .content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            text-align: center;
         }
 
         h1 {
             color: #333;
+            text-align: center;
             font-size: 2.5em;
             margin-top: 0;
             animation: fadeIn 0.5s;
         }
 
-        h2 {
-            color: #333;
-            text-align: center;
-        }
-
         section {
-            padding: 10px;
-            margin-bottom: 5px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 800px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             animation: slideIn 0.5s forwards;
-            animation-delay: 0.5s;
-            background-color: transparent;
-            border: none;
         }
 
-        p {
-            margin: 0 0 1px 0;
-            padding: 0;
+        .realisation {
+            margin-bottom: 20px;
         }
 
-        /* Animations */
+        .realisation h2 {
+            color: #00796b;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .realisation p {
+            font-size: 1em;
+            color: #555;
+            margin: 0;
+        }
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -134,31 +112,10 @@
                 opacity: 1;
             }
         }
-
-        @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        @keyframes underline {
-            0% {
-                transform: scaleX(0);
-            }
-            100% {
-                transform: scaleX(1);
-            }
-        }
-
     </style>
 </head>
-
 <body>
-
-    <!-- Menu de navigation -->
+    <!-- Menu navigation -->
     <div class="menu">
         <ul>
             <li>
@@ -189,45 +146,23 @@
         </ul>
     </div>
 
-    <!-- PHP -->
-<div class="content">
-<?php
-require_once(__DIR__ . '/../../../vendor/autoload.php');
-use Symfony\Component\Yaml\Yaml;
+    <!-- Titre principal -->
+    <h1>Mes Réalisations</h1>
 
-$yamlFile = __DIR__ . '/Compétences.yaml';
-
-try {
-    
-    $data = Yaml::parseFile($yamlFile);
-
-    
-    echo "<h1>" . htmlspecialchars($data["titre"]) . "</h1>\n";
-
-    
-    foreach ($data["domaines"] as $domaine) {
-        echo "<section class='domaine'><h2><strong>" . ucfirst(htmlspecialchars($domaine["nom"])) . "</strong></h2>\n";
-        
-        
-        foreach ($domaine["categories"] as $categorie) {
-            echo "<div class='categorie'><h3>" . htmlspecialchars($categorie["nom"]) . "</h3>\n";
-
-            
-            if (is_array($categorie["competences"])) {
-                foreach ($categorie["competences"] as $competence) {
-                    echo "<strong>" . htmlspecialchars($competence["nom"]) . "</strong> : " . htmlspecialchars($competence["niveau"]) . " %<br>\n";
-                }
-            }
-            echo "</div>\n";
-        }
-        echo "</section>\n";
-    }
-} catch (Exception $e) {
-    // Si erreur
-    echo "<p>Erreur lors du chargement du fichier YAML: " . $e->getMessage() . "</p>";
-}
-?>
-
-</div>
+    <!-- Section des réalisations -->
+    <section>
+        <div class="realisation">
+            <h2>Projet 1 : Site Web Portfolio</h2>
+            <p>Création d'un site web pour présenter mon portfolio. Utilisation des technologies HTML, CSS, JavaScript et PHP.</p>
+        </div>
+        <div class="realisation">
+            <h2>Projet 2 : Application de Gestion</h2>
+            <p>Développement d'une application pour la gestion des stocks en utilisant Symfony et MySQL.</p>
+        </div>
+        <div class="realisation">
+            <h2>Projet 3 : Automatisation avec Python</h2>
+            <p>Création de scripts Python pour automatiser des tâches répétitives au sein d'une entreprise.</p>
+        </div>
+    </section>
 </body>
 </html>
