@@ -79,6 +79,17 @@
             margin-bottom: 15px;
         }
 
+        /* Style pour la photo de profil */
+        .photo {
+            display: block;
+            margin: 20px auto;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #00796b;
+        }
+
         /* GitHub Logo */
         .github-logo {
             display: block;
@@ -124,7 +135,7 @@
     <h1>Présentation</h1>
     <center><h3>Bienvenue sur ma page de Portfolio. Vous êtes actuellement sur la page de présentation (Accueil)</h3></center>
 
-    <!-- Photo -->
+    <!-- Photo de profil -->
     <img src="/site/Extras/photo-profil.jpg" alt="Ma photo" class="photo">
 
     <!-- PHP : Affichage du contenu YAML -->
@@ -136,8 +147,8 @@
 
     try {
         $data = Yaml::parseFile($yamlFile);
-        echo "<h1>" . htmlspecialchars($data["titre"]) . "</h1>\n";
-
+        
+        // Affiche le contenu YAML
         foreach ($data["prenom"] as $prenom) {
             echo "<p><strong>" . ucfirst(htmlspecialchars($prenom["nom"])) . "</strong> : " . htmlspecialchars($prenom["pseudo"]) . "</p>\n";
         }
