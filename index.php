@@ -92,26 +92,14 @@
             animation: fadeIn 0.5s;
         }
 
-        /* Style pour les sous-titres */
-        h2 {
-            color: #333;
-            text-align: center;
-        }
-
-        /* Style pour chaque section (sans fond, sans bordure) */
+        /* Style pour les sections */
         section {
-            padding: 10px;        /* Ajoute un peu de padding autour du texte */
-            margin-bottom: 5px;    /* Petit espace entre les sections */
+            padding: 10px;
+            margin-bottom: 5px;
             animation: slideIn 0.5s forwards;
             animation-delay: 0.5s;
-            background-color: transparent; /* Pas de fond */
-            border: none; /* Pas de bordure */
-        }
-
-        /* Style pour les paragraphes (petit espace entre les paragraphes) */
-        p {
-            margin: 0 0 1px 0;      /* Petite marge en bas de chaque paragraphe */
-            padding: 0;             /* Pas de padding */
+            background-color: transparent;
+            border: none;
         }
 
         /* Style pour l'image ronde */
@@ -122,6 +110,25 @@
             height: 150px;
             border-radius: 50%;
             object-fit: cover;
+        }
+
+        /* Style pour l'icône GitHub */
+        .github-logo {
+            display: block;
+            margin: 30px auto;
+            text-align: center;
+        }
+
+        .github-logo a {
+            display: inline-block;
+            font-size: 40px;
+            color: #333;
+            transition: color 0.3s ease, transform 0.3s;
+        }
+
+        .github-logo a:hover {
+            color: #00796b;
+            transform: scale(1.1);
         }
 
         /* Animations */
@@ -197,18 +204,19 @@
             </li>
         </ul>
     </div>
-<!-- "Présentation" -->
+
+    <!-- Titre "Présentation" -->
     <h1>Présentation</h1>
-     <center>
+    <center>
         <h3>Bienvenue sur ma page de Portfolio. Vous êtes actuellement sur la page de présentation (Accueil)</h3>
     </center>
     <br>
-     <!-- Photo en dessous de la section "Présentation" -->
+
+    <!-- Photo de profil -->
     <img src="/site/Extras/photo-profil.jpg" alt="Ma photo" class="photo">
 
     <!-- PHP -->
     <?php
-
     require_once("../vendor/autoload.php");
     use Symfony\Component\Yaml\Yaml;
     $yamlFile = '../Portfolio/site/Pages/Acceuil.yaml';
@@ -218,19 +226,17 @@
         foreach($data["prenom"] AS $prenom){
             echo "<section><p>".ucfirst($prenom["nom"])." : ".$prenom["pseudo"]."</p></section>\n";
         }
-        foreach($data["famille"] AS $nom){
-            echo "<section><p>".ucfirst($nom["nom"])." : ".$nom["famille"]."</p></section>\n";
-        }
-        foreach($data["accroche"] AS $descriptif){
-            echo "<section><p>".ucfirst($descriptif["descriptif"])."</p></section>\n";
-        }
-        foreach($data["presentation"] AS $descriptif){
-            echo "<section><p>".ucfirst($descriptif["descriptif"])."</p></section>\n";
-        }
     } catch (Exception $e) {
         echo 'Erreur lors du chargement du fichier YAML : ' . $e->getMessage();
     }
     ?>
+
+    <!-- Logo GitHub -->
+    <div class="github-logo">
+        <a href="https://github.com/antoine-duhautbois" target="_blank">
+            <i class="fab fa-github"></i>
+        </a>
+    </div>
 
 </body>
 </html>
