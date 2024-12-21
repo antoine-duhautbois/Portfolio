@@ -56,10 +56,33 @@
             position: relative;
         }
 
+        /* Effet au survol */
         .menu ul li a:hover {
             background-color: #00796b;
             color: #fff;
-            animation: bounce 1s forwards;
+            animation: bounce 0.5s forwards;
+        }
+
+        /* Ligne sous le lien lors du hover */
+        .menu ul li a:hover:before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: #ff5722;
+            transform: scaleX(1);
+            animation: underline 0.3s forwards;
+        }
+
+        .menu ul li a i {
+            margin-right: 8px;
+            transition: transform 0.2s;
+        }
+
+        .menu ul li a:hover i {
+            transform: scale(1.2);
         }
 
         /* Style pour le formulaire */
@@ -121,6 +144,34 @@
             font-size: 0.9em;
             text-align: center;
             font-style: italic;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes underline {
+            0% {
+                transform: scaleX(0);
+            }
+            100% {
+                transform: scaleX(1);
+            }
         }
     </style>
 
