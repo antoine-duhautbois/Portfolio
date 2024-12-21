@@ -11,17 +11,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
-        /* Style général du corps de la page */
         body {
             font-family: 'Poppins', sans-serif;
             font-size: 16px;
             margin: 0;
             padding: 0;
-            background: linear-gradient(80deg, #e0f7fa, #80deea); 
+            background: linear-gradient(80deg, #e0f7fa, #80deea);
             color: #333;
         }
 
-        /* Style du menu */
         .menu {
             background-color: rgba(255, 255, 255, 0.9);
             padding: 15px;
@@ -53,6 +51,7 @@
             transition: background-color 0.3s, color 0.3s;
             display: inline-flex;
             align-items: center;
+            position: relative;
         }
 
         .menu ul li a:hover {
@@ -60,69 +59,50 @@
             color: #fff;
         }
 
-        .menu ul li a:hover:before {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background-color: #ff5722;
-            transform: scaleX(1);
-        }
-
-        /* Style pour le titre principal */
         h1 {
             color: #333;
             text-align: center;
             font-size: 2.5em;
-            margin-top: 10px;
-            animation: fadeIn 0.5s;
+            margin-top: 0;
         }
 
-        /* Style pour chaque section */
         section {
-            padding: 10px;
-            margin-bottom: 10px;
-            animation: slideIn 0.5s forwards;
-        }
-
-        /* Style pour la photo */
-        .photo {
-            display: block;
+            padding: 20px;
             margin: 20px auto;
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
-        /* Style pour le logo GitHub */
-        .github-logo {
+            max-width: 800px;
             text-align: center;
-            margin: 50px 0;
         }
 
-        .github-logo a {
-            font-size: 60px;
-            color: #333;
-            transition: color 0.3s, transform 0.3s;
+        p {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 15px;
         }
 
-        .github-logo a:hover {
-            color: #00796b;
+        /* GitHub Logo */
+        .github-logo {
+            display: block;
+            margin: 40px auto;
+            text-align: center;
+        }
+
+        .github-logo img {
+            width: 80px;
+            transition: transform 0.3s;
+        }
+
+        .github-logo img:hover {
             transform: scale(1.1);
         }
 
         /* Animations */
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes slideIn {
-            from { transform: translateY(20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
     </style>
 </head>
@@ -132,75 +112,59 @@
    <!-- Menu navigation -->
     <div class="menu">
         <ul>
-            <li>
-                <a href="../index.php">
-                    <i class="fas fa-home"></i> Accueil
-                </a>
-            </li>
-            <li>
-                <a href="../site/Pages/Compétences.php">
-                    <i class="fas fa-tools"></i> Compétences
-                </a>
-            </li>
-            <li>
-                <a href="../site/Pages/Réalisations.php">
-                    <i class="fas fa-trophy"></i> Réalisations
-                </a>
-            </li>
-            <li>
-                <a href="#Formations">
-                    <i class="fas fa-graduation-cap"></i> Formations
-                </a>
-            </li>
-            <li>
-                <a href="../site/Pages/contact.php">
-                    <i class="fas fa-envelope"></i> Contact
-                </a>
-            </li>
+            <li><a href="../index.php"><i class="fas fa-home"></i> Accueil</a></li>
+            <li><a href="../site/Pages/Compétences.php"><i class="fas fa-tools"></i> Compétences</a></li>
+            <li><a href="../site/Pages/Réalisations.php"><i class="fas fa-trophy"></i> Réalisations</a></li>
+            <li><a href="#Formations"><i class="fas fa-graduation-cap"></i> Formations</a></li>
+            <li><a href="../site/Pages/contact.php"><i class="fas fa-envelope"></i> Contact</a></li>
         </ul>
     </div>
 
     <!-- Présentation -->
     <h1>Présentation</h1>
-    <center>
-        <h3>Bienvenue sur ma page de Portfolio. Vous êtes actuellement sur la page de présentation (Accueil)</h3>
-    </center>
+    <center><h3>Bienvenue sur ma page de Portfolio. Vous êtes actuellement sur la page de présentation (Accueil)</h3></center>
 
-    <!-- Photo de profil -->
+    <!-- Photo -->
     <img src="/site/Extras/photo-profil.jpg" alt="Ma photo" class="photo">
 
-    <!-- Contenu PHP généré par YAML -->
+    <!-- PHP : Affichage du contenu YAML -->
+    <section>
     <?php
     require_once("../vendor/autoload.php");
     use Symfony\Component\Yaml\Yaml;
-
     $yamlFile = '../Portfolio/site/Pages/Acceuil.yaml';
-    
+
     try {
         $data = Yaml::parseFile($yamlFile);
-        
         echo "<h1>" . htmlspecialchars($data["titre"]) . "</h1>\n";
-        
+
         foreach ($data["prenom"] as $prenom) {
-            echo "<section><p>" . ucfirst(htmlspecialchars($prenom["nom"])) . " : " . htmlspecialchars($prenom["pseudo"]) . "</p></section>\n";
+            echo "<p><strong>" . ucfirst(htmlspecialchars($prenom["nom"])) . "</strong> : " . htmlspecialchars($prenom["pseudo"]) . "</p>\n";
         }
-        
+
         foreach ($data["famille"] as $nom) {
-            echo "<section><p>" . ucfirst(htmlspecialchars($nom["nom"])) . " : " . htmlspecialchars($nom["famille"]) . "</p></section>\n";
+            echo "<p><strong>" . ucfirst(htmlspecialchars($nom["nom"])) . "</strong> : " . htmlspecialchars($nom["famille"]) . "</p>\n";
+        }
+
+        foreach ($data["accroche"] as $descriptif) {
+            echo "<p>" . nl2br(htmlspecialchars($descriptif["descriptif"])) . "</p>\n";
+        }
+
+        // Section présentation correctement ajoutée
+        foreach ($data["presentation"] as $descriptif) {
+            echo "<p>" . nl2br(htmlspecialchars($descriptif["descriptif"])) . "</p>\n";
         }
         
-        foreach ($data["accroche"] as $descriptif) {
-            echo "<section><p>" . ucfirst(htmlspecialchars($descriptif["descriptif"])) . "</p></section>\n";
-        }
     } catch (Exception $e) {
-        echo 'Erreur lors du chargement du fichier YAML : ' . $e->getMessage();
+        echo '<p style="color:red;">Erreur lors du chargement du fichier YAML : ' . htmlspecialchars($e->getMessage()) . '</p>';
     }
     ?>
+    </section>
 
-    <!-- Logo GitHub (en bas de page) -->
+    <!-- Logo GitHub -->
     <div class="github-logo">
         <a href="https://github.com/antoine-duhautbois" target="_blank">
-            <i class="fab fa-github"></i>
+            <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub Logo">
         </a>
     </div>
 
