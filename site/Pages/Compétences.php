@@ -63,27 +63,30 @@
         }
 
         .competence h2 {
-            margin-bottom: 10px;
+            margin-bottom: 20px;
         }
 
         .bar-container {
             width: 100%;
-            background-color: #ddd;
-            border-radius: 5px;
+            background-color: #e0e0e0;
+            border-radius: 50px;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
             overflow: hidden;
         }
 
         .bar {
             height: 25px;
-            border-radius: 5px;
-            background-color: #4caf50;
+            border-radius: 50px;
+            background: linear-gradient(90deg, #00796b, #4caf50);
             width: var(--width);
+            transition: width 1s ease-in-out;
         }
 
         .pourcentage {
-            font-size: 14px;
-            color: #0cf0ab;
+            font-size: 16px;
+            color: #555;
             margin-top: 5px;
+            font-weight: 600;
         }
 
         .footer {
