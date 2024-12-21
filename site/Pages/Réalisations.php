@@ -113,13 +113,13 @@
             margin: 40px 0;
         }
         .github-logo {
-            font-size: 40px;  /* Taille du logo */
-            color: #333;
-            transition: color 0.3s, transform 0.2s;
+            width: 40px;  /* Taille du logo */
+            height: 40px;
+            opacity: 0.8;
+            transition: opacity 0.3s;
         }
         .github-logo:hover {
-            color: #00796b; /* Couleur au survol */
-            transform: scale(1.1);
+            opacity: 1;
         }
     </style>
 </head>
@@ -176,9 +176,9 @@
                 echo '<h2>' . htmlspecialchars($realisation['titre']) . '</h2>';
                 echo '<p>' . htmlspecialchars($realisation['description']) . '</p>';
                 
-                // Bouton uniquement pour le projet 2
-                if (!empty($realisation['lien']) && $realisation['titre'] === "Projet 2 : Site Web Mention Légales") {
-                    echo '<a href="' . htmlspecialchars($realisation['lien']) . '" class="btn">Voir le projet</a>';
+                // Bouton uniquement pour le projet avec un lien
+                if (!empty($realisation['lien'])) {
+                    echo '<a href="' . htmlspecialchars($realisation['lien']) . '" class="btn" target="_blank">Voir le projet</a>';
                 }
                 
                 echo '</div>';
@@ -192,7 +192,7 @@
     <!-- Footer avec le logo GitHub -->
     <div class="footer">
         <a href="https://github.com/antoine-duhautbois" target="_blank">
-            <i class="fab fa-github github-logo"></i>
+            <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub Logo" class="github-logo">
         </a>
     </div>
 
