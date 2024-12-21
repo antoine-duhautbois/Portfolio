@@ -5,43 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mes Réalisations</title>
     
-    <!-- Lien vers Google Fonts pour la police Poppins -->
+    <!-- Lien vers Google Fonts et FontAwesome -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <!-- Lien vers FontAwesome pour les icônes -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
+        /* Styles généraux */
         body {
             font-family: 'Poppins', sans-serif;
-            font-size: 16px;
             margin: 0;
             padding: 0;
-            background: linear-gradient(80deg, #e0f7fa, #80deea);
+            background: linear-gradient(80deg, #e0f7fa, #80deea); /* Dégradé clair */
             color: #333;
         }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .description {
+            text-align: center;
+            margin: 10px auto 30px;
+            color: #555;
+        }
 
+        /* Style du menu */
         .menu {
             background-color: rgba(255, 255, 255, 0.9);
             padding: 15px;
             border-radius: 10px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
-            animation: fadeIn 0.5s;
         }
-
         .menu ul {
             list-style-type: none;
             padding: 0;
             margin: 0;
             text-align: center;
         }
-
         .menu ul li {
             display: inline;
             margin-right: 30px;
             position: relative;
         }
-
         .menu ul li a {
             color: #00796b;
             text-decoration: none;
@@ -49,73 +54,55 @@
             padding: 12px 20px;
             border-radius: 5px;
             transition: background-color 0.3s, color 0.3s;
-            display: inline-flex;
-            align-items: center;
-            position: relative;
         }
-
         .menu ul li a:hover {
             background-color: #00796b;
             color: #fff;
+            animation: bounce 1s forwards;
         }
 
-        h1 {
-            color: #333;
-            text-align: center;
-            font-size: 2.5em;
-            margin-top: 0;
-            animation: fadeIn 0.5s;
-        }
-
-        section {
+        /* Grille pour les réalisations */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
             padding: 20px;
-            margin: 20px auto;
-            max-width: 800px;
-            background-color: rgba(255, 255, 255, 0.9);
+        }
+        .card {
+            background: #fff;
             border-radius: 10px;
+            padding: 20px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            animation: slideIn 0.5s forwards;
+            text-align: center;
+            transition: transform 0.2s;
         }
-
-        .realisation {
-            margin-bottom: 20px;
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
         }
-
-        .realisation h2 {
+        .card h2 {
             color: #00796b;
-            font-size: 1.5em;
             margin-bottom: 10px;
         }
-
-        .realisation p {
-            font-size: 1em;
+        .card p {
             color: #555;
-            margin: 0;
+            font-size: 0.9em;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes slideIn {
-            from {
-                transform: translateY(20px);
-                opacity: 0;
-            }
-            to {
+        /* Animations */
+        @keyframes bounce {
+            0%, 100% {
                 transform: translateY(0);
-                opacity: 1;
+            }
+            50% {
+                transform: translateY(-10px);
             }
         }
     </style>
 </head>
 <body>
-    <!-- Menu navigation -->
+
+    <!-- Menu de navigation -->
     <div class="menu">
         <ul>
             <li>
@@ -148,21 +135,23 @@
 
     <!-- Titre principal -->
     <h1>Mes Réalisations</h1>
+    <p class="description">Voici mes réalisations que j'ai pu faire durant le début de l'année scolaire.</p>
 
     <!-- Section des réalisations -->
-    <section>
-        <div class="realisation">
-            <h2>Projet 1 : Site Web Portfolio</h2>
-            <p>Création d'un site web pour présenter mon portfolio. Utilisation des technologies HTML, CSS, JavaScript et PHP.</p>
-        </div>
-        <div class="realisation">
-            <h2>Projet 2 : Application de Gestion</h2>
-            <p>Développement d'une application pour la gestion des stocks en utilisant Symfony et MySQL.</p>
-        </div>
-        <div class="realisation">
-            <h2>Projet 3 : Automatisation avec Python</h2>
-            <p>Création de scripts Python pour automatiser des tâches répétitives au sein d'une entreprise.</p>
-        </div>
-    </section>
+    <div class="grid">
+        <?php
+        // Charger le fichier YAML
+        $data = yaml_parse_file('../yaml/realisations.yaml'); // Adapter le chemin si nécessaire
+
+        // Parcourir les réalisations et les afficher
+        foreach ($data['realisations'] as $realisation) {
+            echo '<div class="card">';
+            echo '<h2>' . htmlspecialchars($realisation['titre']) . '</h2>';
+            echo '<p>' . htmlspecialchars($realisation['description']) . '</p>';
+            echo '</div>';
+        }
+        ?>
+    </div>
+
 </body>
 </html>

@@ -1,0 +1,9 @@
+realisations:
+  - titre: "Projet 1 : Site Web Portfolio"
+    description: "Création d'un site web pour présenter mon portfolio. Utilisation des technologies HTML, CSS, JavaScript et PHP."
+  - titre: "Projet 2 : Application de Gestion"
+    description: "Développement d'une application pour la gestion des stocks en utilisant Symfony et MySQL."
+  - titre: "Projet 3 : Automatisation avec Python"
+    description: "Création de scripts Python pour automatiser des tâches répétitives au sein d'une entreprise."
+  - titre: "Projet 4 : Projet Proxmox"
+    description: "Installation et gestion d'un cluster Proxmox pour la virtualisation de serveurs au sein de l'entreprise Serenitux."
