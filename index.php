@@ -82,12 +82,8 @@
 
         /* Style pour chaque section */
         section {
-            padding: 20px;
-            margin: 20px auto;
-            max-width: 800px;
-            background-color: rgba(255, 255, 255, 0.95);
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            margin-bottom: 10px;
             animation: slideIn 0.5s forwards;
         }
 
@@ -103,13 +99,12 @@
 
         /* Style pour le logo GitHub */
         .github-logo {
-            display: block;
             text-align: center;
-            margin: 50px auto;
+            margin: 50px 0;
         }
 
         .github-logo a {
-            font-size: 50px;
+            font-size: 60px;
             color: #333;
             transition: color 0.3s, transform 0.3s;
         }
@@ -175,34 +170,32 @@
     <img src="/site/Extras/photo-profil.jpg" alt="Ma photo" class="photo">
 
     <!-- Contenu PHP généré par YAML -->
-    <div class="yaml-text">
-        <?php
-        require_once("../vendor/autoload.php");
-        use Symfony\Component\Yaml\Yaml;
+    <?php
+    require_once("../vendor/autoload.php");
+    use Symfony\Component\Yaml\Yaml;
 
-        $yamlFile = '../Portfolio/site/Pages/Acceuil.yaml';
+    $yamlFile = '../Portfolio/site/Pages/Acceuil.yaml';
+    
+    try {
+        $data = Yaml::parseFile($yamlFile);
         
-        try {
-            $data = Yaml::parseFile($yamlFile);
-            
-            echo "<h1>" . htmlspecialchars($data["titre"]) . "</h1>\n";
-            
-            foreach ($data["prenom"] as $prenom) {
-                echo "<section><p>" . ucfirst(htmlspecialchars($prenom["nom"])) . " : " . htmlspecialchars($prenom["pseudo"]) . "</p></section>\n";
-            }
-            
-            foreach ($data["famille"] as $nom) {
-                echo "<section><p>" . ucfirst(htmlspecialchars($nom["nom"])) . " : " . htmlspecialchars($nom["famille"]) . "</p></section>\n";
-            }
-            
-            foreach ($data["accroche"] as $descriptif) {
-                echo "<section><p>" . ucfirst(htmlspecialchars($descriptif["descriptif"])) . "</p></section>\n";
-            }
-        } catch (Exception $e) {
-            echo 'Erreur lors du chargement du fichier YAML : ' . $e->getMessage();
+        echo "<h1>" . htmlspecialchars($data["titre"]) . "</h1>\n";
+        
+        foreach ($data["prenom"] as $prenom) {
+            echo "<section><p>" . ucfirst(htmlspecialchars($prenom["nom"])) . " : " . htmlspecialchars($prenom["pseudo"]) . "</p></section>\n";
         }
-        ?>
-    </div>
+        
+        foreach ($data["famille"] as $nom) {
+            echo "<section><p>" . ucfirst(htmlspecialchars($nom["nom"])) . " : " . htmlspecialchars($nom["famille"]) . "</p></section>\n";
+        }
+        
+        foreach ($data["accroche"] as $descriptif) {
+            echo "<section><p>" . ucfirst(htmlspecialchars($descriptif["descriptif"])) . "</p></section>\n";
+        }
+    } catch (Exception $e) {
+        echo 'Erreur lors du chargement du fichier YAML : ' . $e->getMessage();
+    }
+    ?>
 
     <!-- Logo GitHub (en bas de page) -->
     <div class="github-logo">
