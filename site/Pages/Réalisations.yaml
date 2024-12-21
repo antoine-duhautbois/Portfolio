@@ -3,6 +3,6 @@ realisations:
     description: "Création d'un site web pour présenter mon portfolio. Vous êtes actuellement dans ma réalisation."
   - titre: "Projet 2 : Site Web Mention Légales"
     description: "Création d'un site web qui permet de lire les mentions légales."
-    lien: "../Extras/mentions-legales.html"
+    lien: "../Extras/mention-legales.php"
   - titre: "Projet 3 : Projet Proxmox"
     description: "Installation et gestion d'un cluster Proxmox pour la virtualisation de serveurs au sein de l'entreprise Serenitux.Projet qui va durée 8 heures environ."
