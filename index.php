@@ -171,13 +171,22 @@
             foreach($data["prenom"] as $prenom) {
                 echo "<section><p>" . ucfirst(htmlspecialchars($prenom["nom"])) . " : " . htmlspecialchars($prenom["pseudo"]) . "</p></section>\n";
             }
+            foreach($data["famille"] as $nom) {
+                echo "<section><p>" . ucfirst(htmlspecialchars($nom["nom"])) . " : " . htmlspecialchars($nom["famille"]) . "</p></section>\n";
+            }
+            foreach($data["accroche"] as $descriptif) {
+                echo "<section><p>" . ucfirst(htmlspecialchars($descriptif["descriptif"])) . "</p></section>\n";
+            }
+            foreach($data["presentation"] as $descriptif) {
+                echo "<section><p>" . ucfirst(htmlspecialchars($descriptif["descriptif"])) . "</p></section>\n";
+            }
         } catch (Exception $e) {
             echo 'Erreur lors du chargement du fichier YAML : ' . $e->getMessage();
         }
         ?>
     </div>
 
-    <!-- Logo GitHub -->
+    <!-- Logo GitHub (placé en bas de page) -->
     <div class="github-logo">
         <a href="https://github.com/antoine-duhautbois" target="_blank">
             <i class="fab fa-github"></i>
