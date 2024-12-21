@@ -56,14 +56,12 @@
             position: relative;
         }
 
-        /* Effet au survol */
         .menu ul li a:hover {
             background-color: #00796b;
             color: #fff;
-            animation: bounce 0.5s forwards;
+            animation: bounce 1s forwards;
         }
 
-        /* Ligne sous le lien lors du hover */
         .menu ul li a:hover:before {
             content: '';
             position: absolute;
@@ -146,6 +144,23 @@
             font-style: italic;
         }
 
+        /* Footer avec le logo GitHub */
+        .footer {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .github-logo {
+            width: 40px;  /* Taille plus petite */
+            height: 40px;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .github-logo:hover {
+            opacity: 1;
+        }
+
         /* Animations */
         @keyframes fadeIn {
             from {
@@ -216,6 +231,13 @@
 
             <button type="submit">Envoyer</button>
         </form>
+    </div>
+
+    <!-- Logo GitHub -->
+    <div class="footer">
+        <a href="https://github.com/antoine-duhautbois" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub Logo" class="github-logo">
+        </a>
     </div>
 
 </body>
