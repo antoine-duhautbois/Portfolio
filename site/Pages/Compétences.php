@@ -96,7 +96,7 @@
             height: 100%;
             background-color: #00796b;
             width: 0;
-            transition: width 2s ease-out;
+            transition: width 4s ease-out;
         }
 
         .percentage {
@@ -105,7 +105,7 @@
             top: 50%;
             transform: translateY(-50%);
             font-size: 0.9em;
-            color: white;
+            color: #1deaac;
         }
 
         /* Animation pour déclencher au scroll */
