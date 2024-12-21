@@ -25,7 +25,6 @@
             border-radius: 10px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
-            animation: fadeIn 0.5s;
         }
 
         .menu ul {
@@ -38,7 +37,6 @@
         .menu ul li {
             display: inline;
             margin-right: 30px;
-            position: relative;
         }
 
         .menu ul li a {
@@ -48,39 +46,14 @@
             padding: 12px 20px;
             border-radius: 5px;
             transition: background-color 0.3s, color 0.3s;
-            display: inline-flex;
-            align-items: center;
-            position: relative;
         }
 
         .menu ul li a:hover {
             background-color: #00796b;
             color: #fff;
-            animation: bounce 1s forwards;
         }
 
-        .menu ul li a:hover:before {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background-color: #ff5722;
-            transform: scaleX(1);
-            animation: underline 0.3s forwards;
-        }
-
-        .menu ul li a i {
-            margin-right: 8px;
-            transition: transform 0.2s;
-        }
-
-        .menu ul li a:hover i {
-            transform: scale(1.2);
-        }
-
-        /* Style pour principal */
+        /* Style principal */
         .content {
             max-width: 800px;
             margin: 0 auto;
@@ -88,71 +61,65 @@
             text-align: center;
         }
 
-        h1 {
-            color: #333;
-            font-size: 2.5em;
-            margin-top: 0;
-            animation: fadeIn 0.5s;
-        }
-
-        h2 {
-            color: #333;
-            text-align: center;
+        h1, h2 {
+            margin-bottom: 20px;
         }
 
         section {
-            padding: 10px;
-            margin-bottom: 5px;
-            animation: slideIn 0.5s forwards;
-            animation-delay: 0.5s;
-            background-color: transparent;
-            border: none;
+            margin: 20px 0;
+            text-align: left;
         }
 
-        p {
-            margin: 0 0 1px 0;
-            padding: 0;
+        /* Barres de compétences */
+        .competence-bar {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            margin: 10px 0 5px;
+            overflow: hidden;
+            height: 20px;
         }
 
-        /* Animations */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+        .bar {
+            height: 100%;
+            line-height: 20px;
+            color: white;
+            border-radius: 10px;
+            text-align: right;
+            padding-right: 10px;
         }
 
-        @keyframes slideIn {
-            from {
-                transform: translateY(20px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
+        .bar-html { background-color: #4caf50; }
+        .bar-css { background-color: #2196f3; }
+        .bar-php { background-color: #ff9800; }
+        .bar-word { background-color: #9c27b0; }
+        .bar-excel { background-color: #3f51b5; }
+        .bar-switch { background-color: #f44336; }
+
+        .percentage {
+            display: block;
+            margin-top: 5px;
+            font-size: 0.9em;
+            color: #555;
+            text-align: center;
         }
 
-        @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
+        /* Footer avec logo GitHub */
+        .footer {
+            text-align: center;
+            margin: 40px 0;
         }
 
-        @keyframes underline {
-            0% {
-                transform: scaleX(0);
-            }
-            100% {
-                transform: scaleX(1);
-            }
+        .github-logo {
+            width: 40px;
+            height: 40px;
+            opacity: 0.8;
+            transition: opacity 0.3s;
         }
 
+        .github-logo:hover {
+            opacity: 1;
+        }
     </style>
 </head>
 
@@ -161,73 +128,54 @@
     <!-- Menu de navigation -->
     <div class="menu">
         <ul>
-            <li>
-                <a href="../../index.php">
-                    <i class="fas fa-home"></i> Accueil
-                </a>
-            </li>
-            <li>
-                <a href="Compétences.php">
-                    <i class="fas fa-tools"></i> Compétences
-                </a>
-            </li>
-            <li>
-                <a href="Réalisations.php">
-                    <i class="fas fa-trophy"></i> Réalisations
-                </a>
-            </li>
-            <li>
-                <a href="#Formations">
-                    <i class="fas fa-graduation-cap"></i> Formations
-                </a>
-            </li>
-            <li>
-                <a href="contact.php">
-                    <i class="fas fa-envelope"></i> Contact
-                </a>
-            </li>
+            <li><a href="../../index.php"><i class="fas fa-home"></i> Accueil</a></li>
+            <li><a href="Compétences.php"><i class="fas fa-tools"></i> Compétences</a></li>
+            <li><a href="Réalisations.php"><i class="fas fa-trophy"></i> Réalisations</a></li>
+            <li><a href="#Formations"><i class="fas fa-graduation-cap"></i> Formations</a></li>
+            <li><a href="contact.php"><i class="fas fa-envelope"></i> Contact</a></li>
         </ul>
     </div>
 
-    <!-- PHP -->
-<div class="content">
-<?php
-require_once(__DIR__ . '/../../../vendor/autoload.php');
-use Symfony\Component\Yaml\Yaml;
+    <!-- Contenu PHP -->
+    <div class="content">
+        <?php
+        require_once(__DIR__ . '/../../../vendor/autoload.php');
+        use Symfony\Component\Yaml\Yaml;
 
-$yamlFile = __DIR__ . '/Compétences.yaml';
+        $yamlFile = __DIR__ . '/Compétences.yaml';
 
-try {
-    
-    $data = Yaml::parseFile($yamlFile);
+        try {
+            $data = Yaml::parseFile($yamlFile);
 
-    
-    echo "<h1>" . htmlspecialchars($data["titre"]) . "</h1>\n";
+            echo "<h1>" . htmlspecialchars($data["titre"]) . "</h1>\n";
 
-    
-    foreach ($data["domaines"] as $domaine) {
-        echo "<section class='domaine'><h2><strong>" . ucfirst(htmlspecialchars($domaine["nom"])) . "</strong></h2>\n";
-        
-        
-        foreach ($domaine["categories"] as $categorie) {
-            echo "<div class='categorie'><h3>" . htmlspecialchars($categorie["nom"]) . "</h3>\n";
+            foreach ($data["domaines"] as $domaine) {
+                echo "<section><h2>" . ucfirst(htmlspecialchars($domaine["nom"])) . "</h2>\n";
 
-            
-            if (is_array($categorie["competences"])) {
-                foreach ($categorie["competences"] as $competence) {
-                    echo "<strong>" . htmlspecialchars($competence["nom"]) . "</strong> : " . htmlspecialchars($competence["niveau"]) . " %<br>\n";
+                foreach ($domaine["categories"] as $categorie) {
+                    echo "<h3>" . htmlspecialchars($categorie["nom"]) . "</h3>\n";
+
+                    foreach ($categorie["competences"] as $competence) {
+                        $niveau = $competence["niveau"];
+                        $barClass = "bar-" . strtolower($competence["nom"]);
+                        echo "<div class='competence-bar'><div class='bar $barClass' style='width: $niveau%;'></div></div>\n";
+                        echo "<span class='percentage'>$niveau%</span>\n";
+                    }
                 }
+                echo "</section>\n";
             }
-            echo "</div>\n";
+        } catch (Exception $e) {
+            echo "<p>Erreur lors du chargement du fichier YAML: " . $e->getMessage() . "</p>";
         }
-        echo "</section>\n";
-    }
-} catch (Exception $e) {
-    // Si erreur
-    echo "<p>Erreur lors du chargement du fichier YAML: " . $e->getMessage() . "</p>";
-}
-?>
+        ?>
+    </div>
 
-</div>
+    <!-- Footer avec le logo GitHub -->
+    <div class="footer">
+        <a href="https://github.com/antoine-duhautbois" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub Logo" class="github-logo">
+        </a>
+    </div>
+
 </body>
 </html>
