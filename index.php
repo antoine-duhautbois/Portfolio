@@ -124,28 +124,6 @@
             object-fit: cover;
         }
 
-        /* Style pour le bouton de téléchargement */
-        .download-btn {
-            display: inline-block;
-            background-color: #00796b;
-            color: #fff;
-            font-size: 1.2em;
-            padding: 15px 30px;
-            text-align: center;
-            border-radius: 5px;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s;
-            margin: 20px auto;
-            text-decoration: none;
-        }
-
-        /* Style au survol */
-        .download-btn:hover {
-            background-color: #004d40;
-            transform: scale(1.05);
-        }
-
         /* Animations */
         @keyframes fadeIn {
             from {
@@ -253,11 +231,6 @@
         echo 'Erreur lors du chargement du fichier YAML : ' . $e->getMessage();
     }
     ?>
-
-    <!--  CV -->
-    <center>
-    <a href="/site/Extras/cv.pdf" class="download-btn" download="CV_Antoine_Duhautbois">Télécharger mon CV pour en savoir plus</a>
-    </center>
 
 </body>
 </html>
