@@ -57,10 +57,30 @@
             transition: background-color 0.3s, color 0.3s;
             display: inline-flex;
             align-items: center;
+            position: relative;
         }
         .menu ul li a:hover {
             background-color: #00796b;
             color: #fff;
+            animation: bounce 1s forwards;
+        }
+        .menu ul li a:hover:before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: #ff5722;
+            transform: scaleX(1);
+            animation: underline 0.3s forwards;
+        }
+        .menu ul li a i {
+            margin-right: 8px;
+            transition: transform 0.2s;
+        }
+        .menu ul li a:hover i {
+            transform: scale(1.2);
         }
         
         /* Grille des réalisations */
@@ -113,13 +133,27 @@
             margin: 40px 0;
         }
         .github-logo {
-            width: 40px;  /* Taille du logo */
+            width: 40px;
             height: 40px;
             opacity: 0.8;
             transition: opacity 0.3s;
         }
         .github-logo:hover {
             opacity: 1;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes underline {
+            0% { transform: scaleX(0); }
+            100% { transform: scaleX(1); }
         }
     </style>
 </head>
@@ -176,7 +210,6 @@
                 echo '<h2>' . htmlspecialchars($realisation['titre']) . '</h2>';
                 echo '<p>' . htmlspecialchars($realisation['description']) . '</p>';
                 
-                // Bouton uniquement pour le projet avec un lien
                 if (!empty($realisation['lien'])) {
                     echo '<a href="' . htmlspecialchars($realisation['lien']) . '" class="btn" target="_blank">Voir le projet</a>';
                 }
