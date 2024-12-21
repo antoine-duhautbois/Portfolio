@@ -54,11 +54,31 @@
             padding: 12px 20px;
             border-radius: 5px;
             transition: background-color 0.3s, color 0.3s;
+            display: inline-flex;
+            align-items: center;
         }
         .menu ul li a:hover {
             background-color: #00796b;
             color: #fff;
             animation: bounce 1s forwards;
+        }
+        .menu ul li a:hover:before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: #ff5722;
+            transform: scaleX(1);
+            animation: underline 0.3s forwards;
+        }
+        .menu ul li a i {
+            margin-right: 8px;
+            transition: transform 0.2s;
+        }
+        .menu ul li a:hover i {
+            transform: scale(1.2);
         }
 
         /* Grille pour les réalisations */
@@ -96,6 +116,15 @@
             }
             50% {
                 transform: translateY(-10px);
+            }
+        }
+
+        @keyframes underline {
+            0% {
+                transform: scaleX(0);
+            }
+            100% {
+                transform: scaleX(1);
             }
         }
     </style>
@@ -140,15 +169,22 @@
     <!-- Section des réalisations -->
     <div class="grid">
         <?php
-        // Charger le fichier YAML
-        $data = yaml_parse_file('../yaml/realisations.yaml'); // Adapter le chemin si nécessaire
+        require_once(__DIR__ . '/../../../vendor/autoload.php');
+        use Symfony\Component\Yaml\Yaml;
 
-        // Parcourir les réalisations et les afficher
-        foreach ($data['realisations'] as $realisation) {
-            echo '<div class="card">';
-            echo '<h2>' . htmlspecialchars($realisation['titre']) . '</h2>';
-            echo '<p>' . htmlspecialchars($realisation['description']) . '</p>';
-            echo '</div>';
+        $yamlFile = __DIR__ . '/../yaml/realisations.yaml';
+
+        try {
+            $data = Yaml::parseFile($yamlFile);
+            
+            foreach ($data['realisations'] as $realisation) {
+                echo '<div class="card">';
+                echo '<h2>' . htmlspecialchars($realisation['titre']) . '</h2>';
+                echo '<p>' . htmlspecialchars($realisation['description']) . '</p>';
+                echo '</div>';
+            }
+        } catch (Exception $e) {
+            echo "<p>Erreur lors du chargement du fichier YAML: " . $e->getMessage() . "</p>";
         }
         ?>
     </div>
