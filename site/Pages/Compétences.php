@@ -66,42 +66,51 @@
         }
 
         section {
-            margin: 20px 0;
+            margin: 30px 0;
             text-align: left;
         }
 
         /* Barres de compétences */
+        .competence-container {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .competence-label {
+            width: 150px;
+            font-weight: bold;
+            text-transform: capitalize;
+        }
+
         .competence-bar {
-            width: 100%;
+            flex: 1;
+            height: 20px;
             background-color: #e0e0e0;
             border-radius: 10px;
-            margin: 10px 0 5px;
             overflow: hidden;
-            height: 20px;
+            position: relative;
         }
 
         .bar {
             height: 100%;
-            line-height: 20px;
-            color: white;
-            border-radius: 10px;
-            text-align: right;
-            padding-right: 10px;
+            background-color: #00796b;
+            width: 0;
+            transition: width 2s ease-out;
         }
 
-        .bar-html { background-color: #4caf50; }
-        .bar-css { background-color: #2196f3; }
-        .bar-php { background-color: #ff9800; }
-        .bar-word { background-color: #9c27b0; }
-        .bar-excel { background-color: #3f51b5; }
-        .bar-switch { background-color: #f44336; }
-
         .percentage {
-            display: block;
-            margin-top: 5px;
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
             font-size: 0.9em;
-            color: #555;
-            text-align: center;
+            color: white;
+        }
+
+        /* Animation pour déclencher au scroll */
+        .animate {
+            width: var(--target-width);
         }
 
         /* Footer avec logo GitHub */
@@ -120,6 +129,7 @@
         .github-logo:hover {
             opacity: 1;
         }
+
     </style>
 </head>
 
@@ -157,9 +167,16 @@
 
                     foreach ($categorie["competences"] as $competence) {
                         $niveau = $competence["niveau"];
-                        $barClass = "bar-" . strtolower($competence["nom"]);
-                        echo "<div class='competence-bar'><div class='bar $barClass' style='width: $niveau%;'></div></div>\n";
-                        echo "<span class='percentage'>$niveau%</span>\n";
+                        $nomCompetence = htmlspecialchars($competence["nom"]);
+
+                        // Barre de progression avec animation
+                        echo "<div class='competence-container'>";
+                        echo "<div class='competence-label'>$nomCompetence</div>";
+                        echo "<div class='competence-bar'>";
+                        echo "<div class='bar' style='--target-width: $niveau%;'></div>";
+                        echo "<span class='percentage'>$niveau%</span>";
+                        echo "</div>";
+                        echo "</div>";
                     }
                 }
                 echo "</section>\n";
@@ -176,6 +193,19 @@
             <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub Logo" class="github-logo">
         </a>
     </div>
+
+    <!-- Script pour déclencher l'animation au scroll -->
+    <script>
+        window.addEventListener('scroll', function() {
+            const bars = document.querySelectorAll('.bar');
+            bars.forEach(bar => {
+                const rect = bar.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.9) {
+                    bar.classList.add('animate');
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>
